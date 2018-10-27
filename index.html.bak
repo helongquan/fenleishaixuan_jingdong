@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>nocti</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<style>
+		.demo{
+			max-width: 920px;
+		    width: 100%;
+		    display: block;
+		    margin: 10px auto;
+		    border: 1px solid #aaa;
+		}
+		.fenlei{
+			display: inline-block;
+		    white-space: nowrap;
+		    height: 24px;
+		    padding: 0 10px;
+		    text-decoration: none;
+		    color: #039;
+		    border-radius: 2px;
+		}
+	</style>
+</head>
+<body>
+<div id="main">
+	<div class="demo">
+		<ul class="select">
+			<li class="select-list">
+				<dl id="select1">
+					<dt>职位类别：</dt>
+					<dd class="select-all selected"><a href="#">全部</a></dd>
+					<!-- <dd><a href="#">研发类</a></dd>
+					<dd><a href="#">互联网类</a></dd>
+					<dd><a href="#">信息安全类</a></dd>
+					<dd><a href="#">市场销售类</a></dd>
+					<dd><a href="#">行业应用类</a></dd>
+					<dd><a href="#">运营类</a></dd>
+					<dd><a href="#">财务类</a></dd> -->
+				</dl>
+			</li>
+			<li class="select-list">
+				<dl id="select2">
+					<dt>工作城市：</dt>
+					<dd class="select-all selected"><a href="#">全部</a></dd>
+					<!-- <dd><a href="#">北京市</a></dd>
+					<dd><a href="#">上海市</a></dd>
+					<dd><a href="#">深圳市</a></dd>
+					<dd><a href="#">广州市</a></dd>
+					<dd><a href="#">珠海市</a></dd> -->
+				</dl>
+			</li>
+			<li class="select-list">
+				<dl id="select3">
+					<dt>薪资：</dt>
+					<dd class="select-all selected"><a href="#">全部</a></dd>
+					<dd><a href="#"><=10000</a></dd>
+					<dd><a href="#">10000-15000</a></dd>
+					<dd><a href="#">15000-20000</a></dd>
+					<dd><a href="#">>=20000</a></dd>
+				</dl>
+			</li>
+			<li class="select-result">
+				<dl>
+					<dt>已选条件：</dt>
+					<dd class="select-no">暂时没有选择过滤条件</dd>
+				</dl>
+			</li>
+		</ul>
+		<hr>
+		<div id="search_result">
+			<p>查询结果在这里</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

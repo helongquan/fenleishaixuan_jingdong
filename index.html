@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>nocti</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<style>
+		.demo{
+			max-width: 920px;
+		    width: 100%;
+		    display: block;
+		    margin: 10px auto;
+		    border: 1px solid #aaa;
+		}
+		a{
+			text-decoration: none !important;
+		}
+		table tr td,table tr th{
+			padding: 8px 15px;
+  			border: 1px solid #ccc;
+  			text-align: left;
+		}
+		table tr td:first-child{
+			max-width: 100px;
+		}
+		table{
+  			border-collapse:collapse;
+  			width: 100%;
+  			display: none;
+  		}
+  		.jiaZai_more{
+  			text-align: center;
+  		}
+  		.jiaZai_more span{
+  			background: #8BC34A;
+		    padding: 8px 30px;
+		    display: inline-block;
+		    margin: 20px auto;
+		    text-align: center;
+		    color: #fff;
+		    cursor: pointer;
+  		}
+	</style>
+</head>
+<body>
+<div id="main">
+	<div class="demo">
+		<ul class="select">
+			<li class="select-list">
+				<dl id="select1">
+					<dt>职位类别：</dt>
+					<dd class="select-all selected"><a href="#">全部</a></dd>
+				</dl>
+			</li>
+			<li class="select-list">
+				<dl id="select2">
+					<dt>工作城市：</dt>
+					<dd class="select-all selected"><a href="#">全部</a></dd>
+				</dl>
+			</li>
+			<li class="select-list">
+				<dl id="select3">
+					<dt>薪资：</dt>
+					<dd class="select-all selected"><a href="#">全部</a></dd>
+					<dd><a href="#"><=10000</a></dd>
+					<dd><a href="#">10000-15000</a></dd>
+					<dd><a href="#">15000-20000</a></dd>
+					<dd><a href="#">>=20000</a></dd>
+				</dl>
+			</li>
+			<li class="select-result">
+				<dl>
+					<dt>已选条件：</dt>
+					<dd class="select-no">暂时没有选择过滤条件</dd>
+				</dl>
+			</li>
+		</ul>
+		<hr>
+		<table id="search_result">
+			<thead>
+				<tr>
+					<th>职位</th>
+					<th>城市</th>
+					<th>类别</th>
+					<th>薪资</th>
+				</tr>
+			</thead>
+		</table>
+		<div class="jiaZai_more"><span>更多</span></div>
+	</div>
+</div>
+</body>
+</html>
