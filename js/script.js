@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
 	htmlobj_category = $.ajax({
-        url: "http://localhost:8080/test/fenleishaixuan/getdata_category.php",
+        url: "http://localhost:8080/project/fenleishaixuan_jingdong/getdata_category.php",
         type: "get",
         dataType: "json",
         contentType: "application/json",
         success: function (res) {
-            console.log(res);
+            // console.log(res);
             for (var i = 0; i < res.length; i++) {
 		    	var fenlei = res[i]["category"];
             	$("#select1").append("<dd class='fenlei'><a href='#'>"+fenlei+"</a></dd>");
@@ -18,16 +18,52 @@ $(document).ready(function(){
     });
 
     htmlobj_city = $.ajax({
-        url: "http://localhost:8080/test/fenleishaixuan/getdata_city.php",
+        url: "http://localhost:8080/project/fenleishaixuan_jingdong/getdata_city.php",
+        type: "get",
+        dataType: "json",
+        contentType: "application/json",
+        success: function (res) {
+            // console.log(res);
+            for (var i = 0; i < res.length; i++) {
+		    	var chengshi = res[i]["city"];
+            	$("#select2").append("<dd><a href='#'>"+chengshi+"</a></dd>");
+		    }
+        },
+        error: function (xhr, err, exception) {
+            console.log(err);
+        }
+    });
+
+    htmlobj_pay = $.ajax({
+        url: "http://localhost:8080/project/fenleishaixuan_jingdong/getdata_pay.php",
         type: "get",
         dataType: "json",
         contentType: "application/json",
         success: function (res) {
             console.log(res);
+            var groups = 5;
+            var perGroup = (res.length)/groups;  
+            // 向下取整
+            perGroup = Math.floor(perGroup);
+            // console.log(perGroup);
+            var newqujian = Array();
+            var houzhe = Array();
             for (var i = 0; i < res.length; i++) {
-		    	var chengshi = res[i]["city"];
-            	$("#select2").append("<dd><a href='#'>"+chengshi+"</a></dd>");
+            	var z = (i+1)%groups;
+            	if(i == 0){
+            		newqujian.push(res[i]["pay"]);
+            	}
+            	if(z == 0){
+            		newqujian.push(res[i]["pay"]);
+            	}
 		    }
+
+		    newqujian.push(res[res.length-1]["pay"]);
+
+		    for (var i = 0; i < newqujian.length; i++) {
+			  $("#select3").append("<dd><a href='#'><span class='xiaxian'>"+newqujian[i]+"</span> - <span class='shangxian'>"+newqujian[i+1]+"</span></a></dd>");
+		    }
+		    $("#select3 dd:last-child").remove();
         },
         error: function (xhr, err, exception) {
             console.log(err);
@@ -59,7 +95,7 @@ $(document).ready(function(){
     function nwalletProfit(num, cNum){
 	    $.ajax({
 	        type: "get",
-	        url: "http://localhost:8080/test/fenleishaixuan/search_all.php",
+	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
 	        dataType: "json",
 	        contentType: "application/json",
 	        success: function (res) {
@@ -153,15 +189,22 @@ $(document).ready(function(){
 
 			var fenlei = new Object();
 			fenlei.catog = $("#selectA a").text();
+			// if ($("#selectB a").text()) {
+			// 	fenlei.chengshi =$("#selectB a").text();
+			// }else{
+			// 	fenlei.chengshi = null;
+			// }
+			console.log(fenlei.catog);
 
 			$.ajax({
-		        url: "http://localhost:8080/test/fenleishaixuan/search_only_category.php",
+		        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_category.php",
+		       	// url: "http://localhost:8080/test/fenleishaixuan/search_filter.php",
 		        type: "get",
 		        dataType: "json",
 		        data: fenlei,
 		        contentType: "application/json",
 		        success: function (res) {
-		            console.log(res);
+		            // console.log(res);
 		            $("table").css({'display':'table'});
 		            $("#search_result tbody tr").remove();
 		            for (var i = 0; i < res.length; i++) {
@@ -172,7 +215,6 @@ $(document).ready(function(){
 		            console.log(err);
 		        }
 		    });
-
 
 		}
 	});
@@ -191,10 +233,17 @@ $(document).ready(function(){
 
 
 			var citys = new Object();
+			// if ($("#selectA a").text()) {
+			// 	citys.catog = $("#selectA a").text();
+			// }else{
+			// 	citys.catog = null;
+			// }
 			citys.chengshi = $("#selectB a").text();
+			console.log(citys.catog);
 
 			$.ajax({
-		        url: "http://localhost:8080/test/fenleishaixuan/search_only_city.php",
+		        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_city.php",
+		        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 		        type: "get",
 		        dataType: "json",
 		        data: citys,
@@ -217,18 +266,46 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("#select3 dd").click(function () {
+	$("#select3").on("click","dd",function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectC").remove();
 		} else {
 			var copyThisC = $(this).clone();
 			if ($("#selectC").length > 0) {
-				$("#selectC a").html($(this).text());
+				$("#selectC").html($(this).html());
 			} else {
 				$(".select-result dl").append(copyThisC.attr("id", "selectC"));
 			}
 		}
+
+
+		var qian = new Object();
+		// qian.pay = $("#selectC a").text();
+		qian.xiaxian = $("#selectC .xiaxian").text();
+		qian.shangxian = $("#selectC .shangxian").text();
+		console.log(qian.pay);
+
+		$.ajax({
+	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_pay.php",
+	        type: "get",
+	        dataType: "json",
+	        data: qian,
+	        contentType: "application/json",
+	        success: function (res) {
+	            console.log(res);
+	            $("table").css({'display':'table'});
+	            $("#search_result tbody tr").remove();
+	            for (var i = 0; i < res.length; i++) {
+	            	$("#search_result").append("<tr><td><a href='#'>"+res[i]["name"]+"</a></td><td>"+res[i]["city"]+"</a></td><td>"+res[i]["category"]+"</a></td><td>"+res[i]["pay"]+"</a></td></tr>");
+			    }
+	        },
+	        error: function (xhr, err, exception) {
+	            console.log(err);
+	        }
+	    });
+
+
 	});
 	
 	
