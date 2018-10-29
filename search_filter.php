@@ -12,63 +12,48 @@ $con =mysqli_connect($servername, $username, $password, $dbname);
 if(empty($_GET['city']) && empty($_GET['category']) && empty($_GET['pay'])){
 	$sql = "SELECT * FROM job";
 }
-if(!(empty($_GET['city'])) && !(empty($_GET['category'])) && !(empty($_GET['pay'])) ){
+else if(!(empty($_GET['city'])) && !(empty($_GET['category'])) && !(empty($_GET['pay'])) ){
 	$zc_xx = $_GET['xiaxian'];
 	$zc_sx = $_GET['shangxian'];
 	$cate = $_GET['category'];
 	$ci = $_GET['city'];
 	$sql = "SELECT * FROM job WHERE pay BETWEEN $zc_xx AND $zc_sx AND category = '$cate' AND city = '$ci'";
 }
-if (empty($_GET['city']) && empty($_GET['category']) && !(empty($_GET['pay'])) ) {
+else if (empty($_GET['city']) && empty($_GET['category']) && !(empty($_GET['pay'])) ) {
 	$zc_xx = $_GET['xiaxian'];
 	$zc_sx = $_GET['shangxian'];
 	$sql = "SELECT * FROM job WHERE pay BETWEEN $zc_xx AND $zc_sx";
 }
-if (empty($_GET['city']) && !(empty($_GET['category'])) && empty($_GET['pay']) ) {
+else if (empty($_GET['city']) && !(empty($_GET['category'])) && empty($_GET['pay']) ) {
 	$cate = $_GET['category'];
 	$sql = "SELECT * FROM job WHERE category = '$cate'";
 }
-if (empty($_GET['city']) && !(empty($_GET['category'])) && !(empty($_GET['pay'])) ) {
+else if (empty($_GET['city']) && !(empty($_GET['category'])) && !(empty($_GET['pay'])) ) {
 	$cate = $_GET['category'];
 	$zc_xx = $_GET['xiaxian'];
 	$zc_sx = $_GET['shangxian'];
 	$sql = "SELECT * FROM job WHERE category = '$cate' AND pay BETWEEN $zc_xx AND $zc_sx";
 }
-if (!empty($_GET['city']) && empty($_GET['category']) && empty($_GET['pay']) ) {
+else if (!empty($_GET['city']) && empty($_GET['category']) && empty($_GET['pay']) ) {
 	$ci = $_GET['city'];
 	$sql = "SELECT * FROM job WHERE city = '$ci'";
 }
-if (!empty($_GET['city']) && empty($_GET['category']) && !(empty($_GET['pay'])) ) {
+else if (!empty($_GET['city']) && empty($_GET['category']) && !(empty($_GET['pay'])) ) {
 	$ci = $_GET['city'];
 	$zc_xx = $_GET['xiaxian'];
 	$zc_sx = $_GET['shangxian'];
 	$sql = "SELECT * FROM job WHERE city = '$ci' AND pay BETWEEN $zc_xx AND $zc_sx";
 }
-if (!empty($_GET['city']) && !(empty($_GET['category'])) && empty($_GET['pay']) ) {
+else {
+	// (!empty($_GET['city']) && !(empty($_GET['category'])) && empty($_GET['pay']) ) 
 	$ci = $_GET['city'];
 	$cate = $_GET['category'];
 	$sql = "SELECT * FROM job WHERE city = '$ci' AND category = '$cate'";
 }
 
-// 检测连接
-// if ((isset($_GET['chengshi'])) && (isset($_GET['catog']))) {
-// 	$fenlei = $_GET['catog'];
-// 	$cityname = $_GET['chengshi'];
-// 	$sql = "SELECT * FROM job WHERE category = '$fenlei' AND city = '$cityname'";
-// }else if (isset($_GET['catog']) && empty($_GET['chengshi'])) {
-// 	$fenlei = $_GET['catog'];
-// 	$sql = "SELECT * FROM job WHERE category = '$fenlei'";
-// }
-// if (isset($_GET['chengshi']) && empty($_GET['catog'])) {
-// 	$cityname = $_GET['chengshi'];
-// 	$sql = "SELECT * FROM job WHERE city = '$cityname'";
-// }else{
-// 	$sql = "SELECT * FROM job";
-// }
-
-$fenlei = $_GET['catog'];
-$cityname = $_GET['chengshi'];
-$sql = "SELECT * FROM job WHERE category = '$fenlei' and city = '$cityname'";
+// $fenlei = $_GET['catog'];
+// $cityname = $_GET['chengshi'];
+// $sql = "SELECT * FROM job WHERE category = '$fenlei' and city = '$cityname'";
 $result = mysqli_query($con,$sql);
 if (!$result) {
     printf("Error: %s\n", mysqli_error($con));

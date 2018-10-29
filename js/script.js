@@ -186,8 +186,8 @@ $(document).ready(function(){
 			function SelectAllCate(num, cNum){
 			    $.ajax({
 			        type: "get",
-			        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
-			        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
+			        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
+			        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 			        dataType: "json",
 			        async: false,   //设置成同步
 			        contentType: "application/json",
@@ -248,8 +248,8 @@ $(document).ready(function(){
 			// console.log(fenlei.category);
 
 			$.ajax({
-		        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_category.php",
-		       	// url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
+		        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_category.php",
+		       	url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 		        type: "get",
 		        dataType: "json",
 		        data: fenlei,
@@ -288,8 +288,8 @@ $(document).ready(function(){
 			function SelectAllCity(num, cNum){
 			    $.ajax({
 			        type: "get",
-			        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
-			        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
+			        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
+			        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 			        dataType: "json",
 			        async: false,   //设置成同步
 			        contentType: "application/json",
@@ -350,8 +350,8 @@ $(document).ready(function(){
 			citys.city = $("#selectB a").text();
 
 			$.ajax({
-		        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_city.php",
-		        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
+		        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_city.php",
+		        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 		        type: "get",
 		        async: false,   //设置成同步
 		        dataType: "json",
@@ -395,8 +395,8 @@ $(document).ready(function(){
 			function SelectAllPay(num, cNum){
 			    $.ajax({
 			        type: "get",
-			        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
-			        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
+			        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
+			        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 			        dataType: "json",
 			        async: false,   //设置成同步
 			        contentType: "application/json",
@@ -457,8 +457,8 @@ $(document).ready(function(){
 		qian.shangxian = $("#selectC .shangxian").text();
 
 		$.ajax({
-	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_pay.php",
-	        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
+	        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_pay.php",
+	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 	        type: "get",
 	        async: false,   //设置成同步
 	        dataType: "json",
@@ -549,57 +549,56 @@ $(document).ready(function(){
 	});
 
 
-	// var insertedNodes = document.querySelectorAll('.select-result dl .selected');
-	var insertedNodes = $('.select-result dl .selected');
-	var observer = new MutationObserver(function(mutations) {
-	  mutations.forEach(function(mutation) {
-	  	for (var i = 0; i < mutation.addedNodes.length; i++)
-	      insertedNodes.push(mutation.addedNodes[i]);
-	  })
-	    // console.log(insertedNodes.text());
+	// var insertedNodes = $('.select-result dl .selected');
+	// var observer = new MutationObserver(function(mutations) {
+	//   mutations.forEach(function(mutation) {
+	//   	for (var i = 0; i < mutation.addedNodes.length; i++)
+	//       insertedNodes.push(mutation.addedNodes[i]);
+	//   })
+	//     // console.log(insertedNodes.text());
 
-	  	var chaxun = new Object();
-		chaxun.city = $("#selectB a").text();
-		chaxun.category = $("#selectA a").text();
-		chaxun.pay = $("#selectC .xiaxian").text();
-		chaxun.xiaxian = $("#selectC .xiaxian").text();
-		chaxun.shangxian = $("#selectC .shangxian").text();
+	//   	var chaxun = new Object();
+	// 	chaxun.city = $("#selectB a").text();
+	// 	chaxun.category = $("#selectA a").text();
+	// 	chaxun.pay = $("#selectC .xiaxian").text();
+	// 	chaxun.xiaxian = $("#selectC .xiaxian").text();
+	// 	chaxun.shangxian = $("#selectC .shangxian").text();
 
-		$.ajax({
-	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
-	        type: "get",
-	        async: false,   //设置成同步
-	        dataType: "json",
-	        data: chaxun,
-	        contentType: "application/json",
-	        success: function (res) {
-	            // console.log(res);
-	            var htmltxt = "";
-	            for (var i = 0; i < res.length; i++) {
-	                htmltxt += "<tr>";
-	                htmltxt += "<td class='mingcheng'><span>"+res[i]["name"]+"</span></td>";
-	                htmltxt += "<td>"+res[i]["city"]+"</td>";
-	                htmltxt += "<td>"+res[i]["category"]+"</td>";
-	                htmltxt += "<td>"+res[i]["pay"]+"</td>";
-	                htmltxt += "</tr>";
-			    }
-                $("#search_result").append(htmltxt).show(500);
-	        },
-	        error: function (xhr, err, exception) {
-	            console.log(err);
-	        }
-	    });
+	// 	$.ajax({
+	//         url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
+	//         type: "get",
+	//         async: false,   //设置成同步
+	//         dataType: "json",
+	//         data: chaxun,
+	//         contentType: "application/json",
+	//         success: function (res) {
+	//             // console.log(res);
+	//             var htmltxt = "";
+	//             for (var i = 0; i < res.length; i++) {
+	//                 htmltxt += "<tr>";
+	//                 htmltxt += "<td class='mingcheng'><span>"+res[i]["name"]+"</span></td>";
+	//                 htmltxt += "<td>"+res[i]["city"]+"</td>";
+	//                 htmltxt += "<td>"+res[i]["category"]+"</td>";
+	//                 htmltxt += "<td>"+res[i]["pay"]+"</td>";
+	//                 htmltxt += "</tr>";
+	// 		    }
+ //                $("#search_result").append(htmltxt).show(500);
+	//         },
+	//         error: function (xhr, err, exception) {
+	//             console.log(err);
+	//         }
+	//     });
 
 
-	});
-	observer.observe(document, {
-		attributes: true,
-		characterData: true,
-		childList: true,
-		subtree: true,
-		attributeOldValue: true,
-		characterDataOldValue: true
-	});
+	// });
+	// observer.observe(document, {
+	// 	attributes: true,
+	// 	characterData: true,
+	// 	childList: true,
+	// 	subtree: true,
+	// 	attributeOldValue: true,
+	// 	characterDataOldValue: true
+	// });
 	
 	
 });
