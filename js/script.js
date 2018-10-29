@@ -263,7 +263,7 @@ $(document).ready(function(){
 		                htmltxt += "<td>"+res[i]["pay"]+"</td>";
 		                htmltxt += "</tr>";
 				    }
-	                jQuery_1_8_3("#search_result").append(htmltxt).show(500);
+	                $("#search_result").append(htmltxt).show(500);
 
 		        },
 		        error: function (xhr, err, exception) {
@@ -366,7 +366,7 @@ $(document).ready(function(){
 		                htmltxt += "<td>"+res[i]["pay"]+"</td>";
 		                htmltxt += "</tr>";
 				    }
-	                jQuery_1_8_3("#search_result").append(htmltxt).show(500);
+	                $("#search_result").append(htmltxt).show(500);
 		        },
 		        error: function (xhr, err, exception) {
 		            console.log(err);
@@ -470,7 +470,7 @@ $(document).ready(function(){
                 htmltxt += "<td>"+res[i]["pay"]+"</td>";
                 htmltxt += "</tr>";
 			    }
-                jQuery_1_8_3("#search_result").append(htmltxt).show(500);
+                $("#search_result").append(htmltxt).show(500);
 	        },
 	        error: function (xhr, err, exception) {
 	            console.log(err);
