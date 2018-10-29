@@ -9,7 +9,8 @@ $(document).ready(function(){
             // console.log(res);
             for (var i = 0; i < res.length; i++) {
 		    	var fenlei = res[i]["category"];
-            	$("#select1").append("<dd class='fenlei'><a href='#'>"+fenlei+"</a></dd>");
+		    	var detail = res[i]["detail"];
+            	$("#select1").append("<dd class='fenlei'><a href='#'>"+res[i]["category"]+"</a></dd>");
 		    }
         },
         error: function (xhr, err, exception) {
@@ -40,7 +41,7 @@ $(document).ready(function(){
         dataType: "json",
         contentType: "application/json",
         success: function (res) {
-            console.log(res);
+            // console.log(res);
             var groups = 5;
             var perGroup = (res.length)/groups;  
             // 向下取整
@@ -59,7 +60,6 @@ $(document).ready(function(){
 		    }
 
 		    newqujian.push(res[res.length-1]["pay"]);
-
 		    for (var i = 0; i < newqujian.length; i++) {
 			  $("#select3").append("<dd><a href='#'><span class='xiaxian'>"+newqujian[i]+"</span> - <span class='shangxian'>"+newqujian[i+1]+"</span></a></dd>");
 		    }
@@ -97,6 +97,7 @@ $(document).ready(function(){
 	        type: "get",
 	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
 	        dataType: "json",
+	        async: false,   //设置成同步
 	        contentType: "application/json",
 	        success: function (res) {
 	        	$("table").css({'display':'table'});
@@ -112,7 +113,7 @@ $(document).ready(function(){
 	                    var htmltxt = "";
 	                    ci++;
 	                    htmltxt += '<tr>';
-	                    htmltxt += '<td>'+res[i]["name"]+'</td>';
+	                    htmltxt += '<td class="mingcheng"><span>'+res[i]["name"]+'</span></td>';
 	                    htmltxt += '<td>'+res[i]["city"]+'</td>';
 	                    htmltxt += '<td>'+res[i]["category"]+'</td>';
 	                    htmltxt += '<td>$'+res[i]["pay"]+'</td>';
@@ -133,8 +134,8 @@ $(document).ready(function(){
 	}
 	nwalletProfit(0);
 	var clickNum = 0; //点击的次数
-	$(".jiaZai_more").on('click','span', function() {
-	    // event.preventDefault();
+	$(".jiaZai_more").on('click','span', function(event) {
+	    event.preventDefault();
 	    clickNum++;
 	    var iNum = 10*clickNum; //每次点击开始加载的第一个索引值
 	    nwalletProfit(iNum, clickNum);
@@ -179,6 +180,60 @@ $(document).ready(function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectA").remove();
+
+			$("#search_result tbody tr").remove();
+
+			function SelectAllCate(num, cNum){
+			    $.ajax({
+			        type: "get",
+			        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
+			        dataType: "json",
+			        async: false,   //设置成同步
+			        contentType: "application/json",
+			        success: function (res) {
+			        	$("table").css({'display':'table'});
+			            if (res.length > 0){
+			                var i = num;
+			                var ci= 0;
+			                var x = parseInt((res.length)/10);//x为每10个一组的组数
+			                if(cNum >= x){
+			                    $(".jiaZai_more").hide(); //当点击更多的次数 ≥ 组数时，隐藏按钮
+			                }
+
+			                for(; i < res.length; i++){
+			                    var htmltxt = "";
+			                    ci++;
+			                    htmltxt += '<tr>';
+			                    htmltxt += '<td class="mingcheng"><span>'+res[i]["name"]+'</span></td>';
+			                    htmltxt += '<td>'+res[i]["city"]+'</td>';
+			                    htmltxt += '<td>'+res[i]["category"]+'</td>';
+			                    htmltxt += '<td>$'+res[i]["pay"]+'</td>';
+
+			                    if(ci> 10){
+			                        break;
+			                    }
+			                    $("#search_result").append(htmltxt);
+			                }
+
+			            }
+
+			        },
+			        error: function (e, d, c) {
+			        console.log(d)
+			        }
+			    });
+			}
+
+			SelectAllCate(0);
+			var clickNum = 0; //点击的次数
+			$(".jiaZai_more").on('click','span', function() {
+			    // event.preventDefault();
+			    clickNum++;
+			    var iNum = 10*clickNum; //每次点击开始加载的第一个索引值
+			    SelectAllCate(iNum, clickNum);
+			});
+
+
 		} else {
 			var copyThisA = $(this).clone();
 			if ($("#selectA").length > 0) {
@@ -189,11 +244,6 @@ $(document).ready(function(){
 
 			var fenlei = new Object();
 			fenlei.catog = $("#selectA a").text();
-			// if ($("#selectB a").text()) {
-			// 	fenlei.chengshi =$("#selectB a").text();
-			// }else{
-			// 	fenlei.chengshi = null;
-			// }
 			console.log(fenlei.catog);
 
 			$.ajax({
@@ -204,12 +254,12 @@ $(document).ready(function(){
 		        data: fenlei,
 		        contentType: "application/json",
 		        success: function (res) {
-		            // console.log(res);
 		            $("table").css({'display':'table'});
 		            $("#search_result tbody tr").remove();
 		            for (var i = 0; i < res.length; i++) {
-		            	$("#search_result").append("<tr><td><a href='#'>"+res[i]["name"]+"</a></td><td>"+res[i]["city"]+"</a></td><td>"+res[i]["category"]+"</a></td><td>"+res[i]["pay"]+"</a></td></tr>");
+		            	$("#search_result").append("<tr><td class='mingcheng'><span>"+res[i]["name"]+"</span></td><td>"+res[i]["city"]+"</td><td>"+res[i]["category"]+"</td><td>"+res[i]["pay"]+"</td></tr>");
 				    }
+
 		        },
 		        error: function (xhr, err, exception) {
 		            console.log(err);
@@ -223,6 +273,61 @@ $(document).ready(function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectB").remove();
+
+			$("#search_result tbody tr").remove();
+
+			function SelectAllCity(num, cNum){
+			    $.ajax({
+			        type: "get",
+			        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
+			        dataType: "json",
+			        async: false,   //设置成同步
+			        contentType: "application/json",
+			        success: function (res) {
+			        	$("table").css({'display':'table'});
+
+			            if (res.length > 0){
+			                var i = num;
+			                var ci= 0;
+			                var x = parseInt((res.length)/10);//x为每10个一组的组数
+			                if(cNum >= x){
+			                    $(".jiaZai_more").hide(); //当点击更多的次数 ≥ 组数时，隐藏按钮
+			                }
+
+			                for(; i < res.length; i++){
+			                    var htmltxt = "";
+			                    ci++;
+			                    htmltxt += '<tr>';
+			                    htmltxt += '<td class="mingcheng"><span>'+res[i]["name"]+'</span></td>';
+			                    htmltxt += '<td>'+res[i]["city"]+'</td>';
+			                    htmltxt += '<td>'+res[i]["category"]+'</td>';
+			                    htmltxt += '<td>$'+res[i]["pay"]+'</td>';
+
+			                    if(ci> 10){
+			                        break;
+			                    }
+			                    $("#search_result").append(htmltxt);
+			                }
+
+			            }
+
+			        },
+			        error: function (e, d, c) {
+			        console.log(d)
+			        }
+			    });
+			}
+
+			SelectAllCity(0);
+			var clickNum = 0; //点击的次数
+			$(".jiaZai_more").on('click','span', function() {
+			    // event.preventDefault();
+			    clickNum++;
+			    var iNum = 10*clickNum; //每次点击开始加载的第一个索引值
+			    SelectAllCity(iNum, clickNum);
+			});
+
+
 		} else {
 			var copyThisB = $(this).clone();
 			if ($("#selectB").length > 0) {
@@ -233,34 +338,28 @@ $(document).ready(function(){
 
 
 			var citys = new Object();
-			// if ($("#selectA a").text()) {
-			// 	citys.catog = $("#selectA a").text();
-			// }else{
-			// 	citys.catog = null;
-			// }
 			citys.chengshi = $("#selectB a").text();
-			console.log(citys.catog);
 
 			$.ajax({
 		        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_city.php",
 		        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 		        type: "get",
+		        async: false,   //设置成同步
 		        dataType: "json",
 		        data: citys,
 		        contentType: "application/json",
 		        success: function (res) {
-		            console.log(res);
+		            // console.log(res);
 		            $("table").css({'display':'table'});
 		            $("#search_result tbody tr").remove();
 		            for (var i = 0; i < res.length; i++) {
-		            	$("#search_result").append("<tr><td><a href='#'>"+res[i]["name"]+"</a></td><td>"+res[i]["city"]+"</a></td><td>"+res[i]["category"]+"</a></td><td>"+res[i]["pay"]+"</a></td></tr>");
+		            	$("#search_result").append("<tr><td class='mingcheng'><span>"+res[i]["name"]+"</span></td><td>"+res[i]["city"]+"</td><td>"+res[i]["category"]+"</td><td>"+res[i]["pay"]+"</td></tr>");
 				    }
 		        },
 		        error: function (xhr, err, exception) {
 		            console.log(err);
 		        }
 		    });
-
 
 
 		}
@@ -270,6 +369,62 @@ $(document).ready(function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectC").remove();
+
+			$("#search_result tbody tr").remove();
+
+			function SelectAllPay(num, cNum){
+			    $.ajax({
+			        type: "get",
+			        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
+			        dataType: "json",
+			        async: false,   //设置成同步
+			        contentType: "application/json",
+			        success: function (res) {
+			        	$("table").css({'display':'table'});
+
+			            if (res.length > 0){
+			                var i = num;
+			                var ci= 0;
+			                var x = parseInt((res.length)/10);//x为每10个一组的组数
+			                if(cNum >= x){
+			                    $(".jiaZai_more").hide(); //当点击更多的次数 ≥ 组数时，隐藏按钮
+			                }
+
+			                for(; i < res.length; i++){
+			                    var htmltxt = "";
+			                    ci++;
+			                    htmltxt += '<tr>';
+			                    htmltxt += '<td class="mingcheng"><span>'+res[i]["name"]+'</span></td>';
+			                    htmltxt += '<td>'+res[i]["city"]+'</td>';
+			                    htmltxt += '<td>'+res[i]["category"]+'</td>';
+			                    htmltxt += '<td>$'+res[i]["pay"]+'</td>';
+
+			                    if(ci> 10){
+			                        break;
+			                    }
+			                    $("#search_result").append(htmltxt);
+			                }
+
+			            }
+
+			        },
+			        error: function (e, d, c) {
+			        console.log(d)
+			        }
+			    });
+			}
+
+			SelectAllPay(0);
+			var clickNum = 0; //点击的次数
+			$(".jiaZai_more").on('click','span', function() {
+			    // event.preventDefault();
+			    clickNum++;
+			    var iNum = 10*clickNum; //每次点击开始加载的第一个索引值
+			    SelectAllPay(iNum, clickNum);
+			});
+
+
+
 		} else {
 			var copyThisC = $(this).clone();
 			if ($("#selectC").length > 0) {
@@ -279,58 +434,102 @@ $(document).ready(function(){
 			}
 		}
 
-
 		var qian = new Object();
 		// qian.pay = $("#selectC a").text();
 		qian.xiaxian = $("#selectC .xiaxian").text();
 		qian.shangxian = $("#selectC .shangxian").text();
-		console.log(qian.pay);
 
 		$.ajax({
 	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_pay.php",
 	        type: "get",
+	        async: false,   //设置成同步
 	        dataType: "json",
 	        data: qian,
 	        contentType: "application/json",
 	        success: function (res) {
-	            console.log(res);
+	            // console.log(res);
 	            $("table").css({'display':'table'});
 	            $("#search_result tbody tr").remove();
 	            for (var i = 0; i < res.length; i++) {
-	            	$("#search_result").append("<tr><td><a href='#'>"+res[i]["name"]+"</a></td><td>"+res[i]["city"]+"</a></td><td>"+res[i]["category"]+"</a></td><td>"+res[i]["pay"]+"</a></td></tr>");
+	            	$("#search_result").append("<tr><td class='mingcheng'><span>"+res[i]["name"]+"</span></td><td>"+res[i]["city"]+"</td><td>"+res[i]["category"]+"</td><td>"+res[i]["pay"]+"</td></tr>");
 			    }
 	        },
 	        error: function (xhr, err, exception) {
 	            console.log(err);
 	        }
 	    });
+	});
+	
+	// $("#selectA").click(function() {
+	// 	$(this).remove();
+	// 	$("#select1 .select-all").addClass("selected").siblings().removeClass("selected");
+	// });
 
+	var jQuery_1_8_3 = $.noConflict(true);
+	jQuery_1_8_3("#selectA").live("click", function () {
+		jQuery_1_8_3(this).remove();
+		jQuery_1_8_3("#select1 .select-all").addClass("selected").siblings().removeClass("selected");
+	});
 
+	jQuery_1_8_3(".close").live("click",function(){
+		jQuery_1_8_3("#detail_area div").hide(500);
+		location.reload(true);
+		// window.history.go(-1);
 	});
 	
-	
-	$("#selectA").live("click", function () {
-		$(this).remove();
-		$("#select1 .select-all").addClass("selected").siblings().removeClass("selected");
+	jQuery_1_8_3("#selectB").live("click", function () {
+		jQuery_1_8_3(this).remove();
+		jQuery_1_8_3("#select2 .select-all").addClass("selected").siblings().removeClass("selected");
 	});
 	
-	$("#selectB").live("click", function () {
-		$(this).remove();
-		$("#select2 .select-all").addClass("selected").siblings().removeClass("selected");
+	jQuery_1_8_3("#selectC").live("click", function () {
+		jQuery_1_8_3(this).remove();
+		jQuery_1_8_3("#select3 .select-all").addClass("selected").siblings().removeClass("selected");
 	});
 	
-	$("#selectC").live("click", function () {
-		$(this).remove();
-		$("#select3 .select-all").addClass("selected").siblings().removeClass("selected");
-	});
-	
-	
-	$(".select dd").live("click", function () {
-		if ($(".select-result dd").length > 1) {
-			$(".select-no").hide();
+	jQuery_1_8_3(".select dd").live("click", function () {
+		if (jQuery_1_8_3(".select-result dd").length > 1) {
+			jQuery_1_8_3(".select-no").hide(500);
 		} else {
-			$(".select-no").show();
+			jQuery_1_8_3(".select-no").show(500);
 		}
+	});
+
+
+	jQuery_1_8_3(".mingcheng span").live("click",function(event){
+		event.preventDefault(true);
+		var obj = new Object();
+		obj.names = jQuery_1_8_3(this).text();
+
+		jQuery_1_8_3.ajax({
+	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_by_name.php",
+	        type: "get",
+	        // async: true,
+	        dataType: "json",
+	        data: obj,
+	        contentType: "application/json",
+	        success: function (res) {
+	            console.log(res);
+	            jQuery_1_8_3("table").css({'display':'none'});
+
+	            $(".miaosu").remove(); //关闭旧的职位详情
+	            var htmltxt = "";
+                htmltxt += "<div class='miaosu' style='padding: 15px;background: #f1f1f1;position:relative'>";
+                htmltxt += "<h2>职位："+res[0].name+"</h2>";
+                htmltxt += "<p>薪资："+res[0].pay+"</p>";
+                htmltxt += "<p>类别："+res[0].category+"</p>";
+                htmltxt += "<p>地区："+res[0].city+"</p>";
+                htmltxt += "<p>投递简历："+res[0].url+"</p>";
+                htmltxt += "<p>详情说明："+res[0].detail+"</p>";
+                htmltxt += "<span class='close'>关闭</span></div>";
+                htmltxt += "</div>";
+                jQuery_1_8_3("#detail_area").append(htmltxt).show(500);
+	        },
+	        error: function (xhr, err, exception) {
+	            console.log(err);
+	        }
+	    });
+
 	});
 	
 });
