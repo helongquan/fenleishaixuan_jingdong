@@ -6,7 +6,6 @@ $(document).ready(function(){
         dataType: "json",
         contentType: "application/json",
         success: function (res) {
-            // console.log(res);
             for (var i = 0; i < res.length; i++) {
 		    	var fenlei = res[i]["category"];
 		    	var detail = res[i]["detail"];
@@ -24,7 +23,6 @@ $(document).ready(function(){
         dataType: "json",
         contentType: "application/json",
         success: function (res) {
-            // console.log(res);
             for (var i = 0; i < res.length; i++) {
 		    	var chengshi = res[i]["city"];
             	$("#select2").append("<dd><a href='#'>"+chengshi+"</a></dd>");
@@ -41,12 +39,10 @@ $(document).ready(function(){
         dataType: "json",
         contentType: "application/json",
         success: function (res) {
-            // console.log(res);
             var groups = 5;
             var perGroup = (res.length)/groups;  
             // 向下取整
             perGroup = Math.floor(perGroup);
-            // console.log(perGroup);
             var newqujian = Array();
             var houzhe = Array();
             for (var i = 0; i < res.length; i++) {
@@ -60,6 +56,7 @@ $(document).ready(function(){
 		    }
 
 		    newqujian.push(res[res.length-1]["pay"]);
+
 		    for (var i = 0; i < newqujian.length; i++) {
 			  $("#select3").append("<dd><a href='#'><span class='xiaxian'>"+newqujian[i]+"</span> - <span class='shangxian'>"+newqujian[i+1]+"</span></a></dd>");
 		    }
@@ -91,7 +88,7 @@ $(document).ready(function(){
     // });
 
 
-    // 加载更多+查询所有内容
+    // 访问页面的时候，加载更多+查询所有内容
     function nwalletProfit(num, cNum){
 	    $.ajax({
 	        type: "get",
@@ -177,11 +174,14 @@ $(document).ready(function(){
 	// });
 			
 	$("#select1").on("click","dd",function(){
+
+		$("table").css({'display':'table'});
+		$("#search_result tbody tr").remove();
+		$(".miaosu").remove(); //关闭旧的职位详情
+
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectA").remove();
-
-			$("#search_result tbody tr").remove();
 
 			function SelectAllCate(num, cNum){
 			    $.ajax({
@@ -191,7 +191,7 @@ $(document).ready(function(){
 			        async: false,   //设置成同步
 			        contentType: "application/json",
 			        success: function (res) {
-			        	$("table").css({'display':'table'});
+			        	
 			            if (res.length > 0){
 			                var i = num;
 			                var ci= 0;
@@ -254,11 +254,16 @@ $(document).ready(function(){
 		        data: fenlei,
 		        contentType: "application/json",
 		        success: function (res) {
-		            $("table").css({'display':'table'});
-		            $("#search_result tbody tr").remove();
+		            var htmltxt = "";
 		            for (var i = 0; i < res.length; i++) {
-		            	$("#search_result").append("<tr><td class='mingcheng'><span>"+res[i]["name"]+"</span></td><td>"+res[i]["city"]+"</td><td>"+res[i]["category"]+"</td><td>"+res[i]["pay"]+"</td></tr>");
+		                htmltxt += "<tr>";
+		                htmltxt += "<td class='mingcheng'><span>"+res[i]["name"]+"</span></td>";
+		                htmltxt += "<td>"+res[i]["city"]+"</td>";
+		                htmltxt += "<td>"+res[i]["category"]+"</td>";
+		                htmltxt += "<td>"+res[i]["pay"]+"</td>";
+		                htmltxt += "</tr>";
 				    }
+	                jQuery_1_8_3("#search_result").append(htmltxt).show(500);
 
 		        },
 		        error: function (xhr, err, exception) {
@@ -270,11 +275,14 @@ $(document).ready(function(){
 	});
 	
 	$("#select2").on("click","dd",function(){
+
+		$("table").css({'display':'table'});
+		$("#search_result tbody tr").remove();
+		$(".miaosu").remove(); //关闭旧的职位详情
+
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectB").remove();
-
-			$("#search_result tbody tr").remove();
 
 			function SelectAllCity(num, cNum){
 			    $.ajax({
@@ -284,7 +292,6 @@ $(document).ready(function(){
 			        async: false,   //设置成同步
 			        contentType: "application/json",
 			        success: function (res) {
-			        	$("table").css({'display':'table'});
 
 			            if (res.length > 0){
 			                var i = num;
@@ -350,11 +357,16 @@ $(document).ready(function(){
 		        contentType: "application/json",
 		        success: function (res) {
 		            // console.log(res);
-		            $("table").css({'display':'table'});
-		            $("#search_result tbody tr").remove();
+		            var htmltxt = "";
 		            for (var i = 0; i < res.length; i++) {
-		            	$("#search_result").append("<tr><td class='mingcheng'><span>"+res[i]["name"]+"</span></td><td>"+res[i]["city"]+"</td><td>"+res[i]["category"]+"</td><td>"+res[i]["pay"]+"</td></tr>");
+		                htmltxt += "<tr>";
+		                htmltxt += "<td class='mingcheng'><span>"+res[i]["name"]+"</span></td>";
+		                htmltxt += "<td>"+res[i]["city"]+"</td>";
+		                htmltxt += "<td>"+res[i]["category"]+"</td>";
+		                htmltxt += "<td>"+res[i]["pay"]+"</td>";
+		                htmltxt += "</tr>";
 				    }
+	                jQuery_1_8_3("#search_result").append(htmltxt).show(500);
 		        },
 		        error: function (xhr, err, exception) {
 		            console.log(err);
@@ -366,11 +378,17 @@ $(document).ready(function(){
 	});
 	
 	$("#select3").on("click","dd",function(){
+
+		$("table").css({'display':'table'});
+		$("#search_result tbody tr").remove();
+		$(".miaosu").remove(); //关闭旧的职位详情
+
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectC").remove();
 
 			$("#search_result tbody tr").remove();
+			$(".miaosu").remove(); //关闭职位详情
 
 			function SelectAllPay(num, cNum){
 			    $.ajax({
@@ -380,7 +398,6 @@ $(document).ready(function(){
 			        async: false,   //设置成同步
 			        contentType: "application/json",
 			        success: function (res) {
-			        	$("table").css({'display':'table'});
 
 			            if (res.length > 0){
 			                var i = num;
@@ -417,12 +434,10 @@ $(document).ready(function(){
 			SelectAllPay(0);
 			var clickNum = 0; //点击的次数
 			$(".jiaZai_more").on('click','span', function() {
-			    // event.preventDefault();
 			    clickNum++;
 			    var iNum = 10*clickNum; //每次点击开始加载的第一个索引值
 			    SelectAllPay(iNum, clickNum);
 			});
-
 
 
 		} else {
@@ -435,7 +450,6 @@ $(document).ready(function(){
 		}
 
 		var qian = new Object();
-		// qian.pay = $("#selectC a").text();
 		qian.xiaxian = $("#selectC .xiaxian").text();
 		qian.shangxian = $("#selectC .shangxian").text();
 
@@ -447,23 +461,22 @@ $(document).ready(function(){
 	        data: qian,
 	        contentType: "application/json",
 	        success: function (res) {
-	            // console.log(res);
-	            $("table").css({'display':'table'});
-	            $("#search_result tbody tr").remove();
+	            var htmltxt = "";
 	            for (var i = 0; i < res.length; i++) {
-	            	$("#search_result").append("<tr><td class='mingcheng'><span>"+res[i]["name"]+"</span></td><td>"+res[i]["city"]+"</td><td>"+res[i]["category"]+"</td><td>"+res[i]["pay"]+"</td></tr>");
+                htmltxt += "<tr>";
+                htmltxt += "<td class='mingcheng'><span>"+res[i]["name"]+"</span></td>";
+                htmltxt += "<td>"+res[i]["city"]+"</td>";
+                htmltxt += "<td>"+res[i]["category"]+"</td>";
+                htmltxt += "<td>"+res[i]["pay"]+"</td>";
+                htmltxt += "</tr>";
 			    }
+                jQuery_1_8_3("#search_result").append(htmltxt).show(500);
 	        },
 	        error: function (xhr, err, exception) {
 	            console.log(err);
 	        }
 	    });
 	});
-	
-	// $("#selectA").click(function() {
-	// 	$(this).remove();
-	// 	$("#select1 .select-all").addClass("selected").siblings().removeClass("selected");
-	// });
 
 	var jQuery_1_8_3 = $.noConflict(true);
 	jQuery_1_8_3("#selectA").live("click", function () {
@@ -474,7 +487,6 @@ $(document).ready(function(){
 	jQuery_1_8_3(".close").live("click",function(){
 		jQuery_1_8_3("#detail_area div").hide(500);
 		location.reload(true);
-		// window.history.go(-1);
 	});
 	
 	jQuery_1_8_3("#selectB").live("click", function () {
@@ -498,28 +510,27 @@ $(document).ready(function(){
 
 	jQuery_1_8_3(".mingcheng span").live("click",function(event){
 		event.preventDefault(true);
+
+		jQuery_1_8_3("table").css({'display':'none'});
+		jQuery_1_8_3(".miaosu").remove(); //关闭旧的职位详情
 		var obj = new Object();
 		obj.names = jQuery_1_8_3(this).text();
 
 		jQuery_1_8_3.ajax({
 	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_by_name.php",
 	        type: "get",
-	        // async: true,
 	        dataType: "json",
 	        data: obj,
 	        contentType: "application/json",
 	        success: function (res) {
-	            console.log(res);
-	            jQuery_1_8_3("table").css({'display':'none'});
 
-	            $(".miaosu").remove(); //关闭旧的职位详情
 	            var htmltxt = "";
-                htmltxt += "<div class='miaosu' style='padding: 15px;background: #eaeaea;position:relative'>";
+                htmltxt += "<div class='miaosu' style='padding:15px;background:#eaeaea;position:relative'>";
                 htmltxt += "<h2>职位："+res[0].name+"</h2>";
                 htmltxt += "<p>薪资："+res[0].pay+"</p>";
                 htmltxt += "<p>类别："+res[0].category+"</p>";
                 htmltxt += "<p>地区："+res[0].city+"</p>";
-                htmltxt += "<p>投递简历："+res[0].url+"</p>";
+                htmltxt += "<p>投递简历：<a href="+res[0].url+">"+res[0].url+"</a></p>";
                 htmltxt += "<p>详情说明："+res[0].detail+"</p>";
                 htmltxt += "<span class='close'>关闭</span></div>";
                 htmltxt += "</div>";
