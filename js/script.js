@@ -514,7 +514,7 @@ $(document).ready(function(){
 
 	            $(".miaosu").remove(); //关闭旧的职位详情
 	            var htmltxt = "";
-                htmltxt += "<div class='miaosu' style='padding: 15px;background: #f1f1f1;position:relative'>";
+                htmltxt += "<div class='miaosu' style='padding: 15px;background: #eaeaea;position:relative'>";
                 htmltxt += "<h2>职位："+res[0].name+"</h2>";
                 htmltxt += "<p>薪资："+res[0].pay+"</p>";
                 htmltxt += "<p>类别："+res[0].category+"</p>";
