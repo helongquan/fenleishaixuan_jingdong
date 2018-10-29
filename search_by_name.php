@@ -10,7 +10,7 @@ $dbname = "test";
 $con =mysqli_connect($servername, $username, $password, $dbname);
 
 // 检测连接
-$zhiwei = $_GET['names'];
+$zhiwei = $_GET['name'];
 $sql = "SELECT * FROM job WHERE name = '$zhiwei'";
 $result = mysqli_query($con,$sql);
 if (!$result) {

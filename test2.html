@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<div id='block'>
+	  <span id='span'>Text</span>
+	</div>
+
+	<ul>
+		<li class="select-result">
+			<dl>
+				<dt>已选条件：</dt>
+				<dd class="select-no" style="display: none;">暂时没有选择过滤条件</dd>
+				<dd class="selected" id="selectB"><a href="#">北京市</a></dd>
+				<dd class="fenlei selected" id="selectA"><a href="#">服务类</a></dd>
+				<dd class="selected" id="selectA"><a href="#">15000-20000</a></dd>
+			</dl>
+		</li>
+	</ul>
+
+	<!-- <div id='target' class='block' name='target'>
+	    target的第一个子节点
+	    <p>
+	       <span>target的后代</span>
+	    </p>
+	</div> -->
+
+	<!-- <script>
+		var target=document.getElementById('target');
+		var i=0
+		var observe=new MutationObserver(function (mutations,observe) {
+		    i++   
+		});
+		observe.observe(target,{ childList: true});
+		target.appendChild(document.createTextNode('1'));
+		target.appendChild(document.createTextNode('2'));
+		target.appendChild(document.createTextNode('3'));
+		console.log(i);
+	</script> -->
+
+
+<!-- 	<script>
+		var mo = new MutationObserver(callback);
+		var div = document.querySelector('div');
+		var options = {
+		    'childList': true,
+		    'arrtibutes': true
+		};
+		 
+		mo.observer(div, options);
+	</script> -->
+
+	<!-- <script>
+		function callback(records) {
+		  records.forEach(function(record) {
+		    console.log(record)
+		  })
+		}
+
+		var article = document.querySelector('.select-result dl');
+		var ob = new MutationObserver(callback)
+		ob.observe(article, {
+		  childList: true,
+		  subtree: true
+		})
+	</script> -->
+
+	<!-- <script>
+		$(document).ready(function() {
+			var callback = function(records) { 
+				records.map(function(record) { 
+					console.log('Mutation type: ' + record.type); 
+					console.log('Mutation target: ' + record.target); 
+				}); 
+			};
+
+			var article = document.querySelector('.select-result dl');
+			var mo = new MutationObserver(callback);
+			var option = { 
+				'childList': true, 
+				'subtree': true 
+			}; 
+			mo.observe(article, option);
+			console.log("你好");
+			console.log(article);
+		})
+	</script> -->
+
+	<script>
+		$(document).ready(function() {
+			// var insertedNodes = [1,2,6,4,8,9];
+			var insertedNodes = document.querySelectorAll('.select-result dl .selected');
+			var observer = new MutationObserver(function(mutations) {
+			  mutations.forEach(function(mutation) {
+			  	for (var i = 0; i < mutation.addedNodes.length; i++)
+			      insertedNodes.push(mutation.addedNodes[i]);
+			  })
+			});
+			observer.observe(insertedNodes, { 
+				attributes: true,
+				characterData: true,
+				childList: true,
+				subtree: true,
+				attributeOldValue: true,
+				characterDataOldValue: true
+			});
+			console.log(insertedNodes.length);
+			console.log(insertedNodes.length);
+		})
+	</script>
+
+
+	<!-- <script>
+		(function(win){
+		  'use strict';
+
+		  var listeners = [];
+		  var doc = win.document;
+		  var MutationObserver = win.MutationObserver || win.WebKitMutationObserver;
+		  var observer;
+
+		  function ready(selector, fn){
+		    // 储存选择器和回调函数
+		    listeners.push({
+		      selector: selector,
+		      fn: fn
+		    });
+		    if(!observer){
+		      // 监听document变化
+		      observer = new MutationObserver(check);
+		      observer.observe(doc.documentElement, {
+		        childList: true,
+		        subtree: true
+		      });
+		    }
+		    // 检查该节点是否已经在DOM中
+		    check();
+		  }
+
+		  function check(){
+		  // 检查是否匹配已储存的节点
+		    for(var i = 0; i < listeners.length; i++){
+		      var listener = listeners[i];
+		      // 检查指定节点是否有匹配
+		      var elements = doc.querySelectorAll(listener.selector);
+		      for(var j = 0; j < elements.length; j++){
+		        var element = elements[j];
+		        // 确保回调函数只会对该元素调用一次
+		        if(!element.ready){
+		          element.ready = true;
+		          // 对该节点调用回调函数
+		          listener.fn.call(element, element);
+		        }
+		      }
+		    }
+		  }
+
+		  // 对外暴露ready
+		  win.ready = ready;
+
+		})(this);
+
+		ready('.select-result dl', function(element){
+		  console.log("右边话");
+		});
+
+	</script> -->
+
+	<!-- <script>
+		var callback = function(records) { 
+			records.map(function(record) { 
+				console.log('Previous attribute value: ' + record.oldValue); 
+			}); 
+		}; 
+		var mo = new MutationObserver(callback); 
+		var element = document.getElementById('#my_element'); 
+		var option = { 
+			'attribute': true,
+			'attributeOldValue': true 
+		};
+		mo.observe(element, option);
+	</script> -->
+</body>
+</html>

@@ -10,10 +10,10 @@ $dbname = "test";
 $con =mysqli_connect($servername, $username, $password, $dbname);
 
 // 检测连接
-$xx = $_GET['xiaxian'];
-$sx = $_GET['shangxian'];
+$zc_xx = $_GET['xiaxian'];
+$zc_sx = $_GET['shangxian'];
 
-$sql = "SELECT * FROM job WHERE pay BETWEEN $xx AND $sx";
+$sql = "SELECT * FROM job WHERE pay BETWEEN $zc_xx AND $zc_sx";
 $result = mysqli_query($con,$sql);
 if (!$result) {
     printf("Error: %s\n", mysqli_error($con));

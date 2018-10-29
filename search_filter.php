@@ -9,6 +9,47 @@ $dbname = "test";
 // 创建连接 
 $con =mysqli_connect($servername, $username, $password, $dbname);
 
+if(empty($_GET['city']) && empty($_GET['category']) && empty($_GET['pay'])){
+	$sql = "SELECT * FROM job";
+}
+if(!(empty($_GET['city'])) && !(empty($_GET['category'])) && !(empty($_GET['pay'])) ){
+	$zc_xx = $_GET['xiaxian'];
+	$zc_sx = $_GET['shangxian'];
+	$cate = $_GET['category'];
+	$ci = $_GET['city'];
+	$sql = "SELECT * FROM job WHERE pay BETWEEN $zc_xx AND $zc_sx AND category = '$cate' AND city = '$ci'";
+}
+if (empty($_GET['city']) && empty($_GET['category']) && !(empty($_GET['pay'])) ) {
+	$zc_xx = $_GET['xiaxian'];
+	$zc_sx = $_GET['shangxian'];
+	$sql = "SELECT * FROM job WHERE pay BETWEEN $zc_xx AND $zc_sx";
+}
+if (empty($_GET['city']) && !(empty($_GET['category'])) && empty($_GET['pay']) ) {
+	$cate = $_GET['category'];
+	$sql = "SELECT * FROM job WHERE category = '$cate'";
+}
+if (empty($_GET['city']) && !(empty($_GET['category'])) && !(empty($_GET['pay'])) ) {
+	$cate = $_GET['category'];
+	$zc_xx = $_GET['xiaxian'];
+	$zc_sx = $_GET['shangxian'];
+	$sql = "SELECT * FROM job WHERE category = '$cate' AND pay BETWEEN $zc_xx AND $zc_sx";
+}
+if (!empty($_GET['city']) && empty($_GET['category']) && empty($_GET['pay']) ) {
+	$ci = $_GET['city'];
+	$sql = "SELECT * FROM job WHERE city = '$ci'";
+}
+if (!empty($_GET['city']) && empty($_GET['category']) && !(empty($_GET['pay'])) ) {
+	$ci = $_GET['city'];
+	$zc_xx = $_GET['xiaxian'];
+	$zc_sx = $_GET['shangxian'];
+	$sql = "SELECT * FROM job WHERE city = '$ci' AND pay BETWEEN $zc_xx AND $zc_sx";
+}
+if (!empty($_GET['city']) && !(empty($_GET['category'])) && empty($_GET['pay']) ) {
+	$ci = $_GET['city'];
+	$cate = $_GET['category'];
+	$sql = "SELECT * FROM job WHERE city = '$ci' AND category = '$cate'";
+}
+
 // 检测连接
 // if ((isset($_GET['chengshi'])) && (isset($_GET['catog']))) {
 // 	$fenlei = $_GET['catog'];
