@@ -44,7 +44,7 @@ $(document).ready(function(){
             // 向下取整
             perGroup = Math.floor(perGroup);
             var newqujian = Array();
-            var houzhe = Array();
+            // var houzhe = Array();
             for (var i = 0; i < res.length; i++) {
             	var z = (i+1)%groups;
             	if(i == 0){
@@ -136,10 +136,9 @@ $(document).ready(function(){
   //   for (var i = 0; i < arr.length; i++) {
   //       for (var j =i+1; j <arr.length; ) {
   //           if (arr[i].name == arr[j].name && arr[i].value == arr[j].value && arr[i].age == arr[j].age) {
-  //               arr.splice(j,2);
+  //               arr.splice(j,1);
   //           }
   //           else j++;
-  //           // console.log(arr[j]["value"]);
   //       }
   //   }
   //   console.log(arr);
@@ -493,8 +492,7 @@ $(document).ready(function(){
 	});
 
 
-	jQuery_1_8_3(".mingcheng span").live("click",function(event){
-		event.preventDefault(true);
+	jQuery_1_8_3(".mingcheng span").live("click",function(){
 
 		jQuery_1_8_3("table").css({'display':'none'});
 		jQuery_1_8_3(".miaosu").remove(); //关闭旧的职位详情
