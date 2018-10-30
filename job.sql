@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50612
 File Encoding         : 65001
 
-Date: 2018-10-29 14:54:33
+Date: 2018-10-30 10:52:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,30 +55,30 @@ INSERT INTO `job` VALUES ('18', '高级后台开发工程师（.NET）', '互联
 INSERT INTO `job` VALUES ('19', 'iOS开发工程师 (19届)', '互联网类', '深圳市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('20', '行业销售专员（海外方向）', '行业应用类', '上海市', '18000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('21', '销售助理', '行业应用类', '深圳市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
-INSERT INTO `job` VALUES ('22', '行业销售专员（安防方向）', '行业应用类', '北京市', '16000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
+INSERT INTO `job` VALUES ('22', '行业销售专员（安防方向）', '行业应用类', '北京市', '23000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 17:22:17');
 INSERT INTO `job` VALUES ('23', '行业产品运营专员', '行业应用类', '深圳市', '25000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('24', '行业解决方案工程师', '行业应用类', '上海市', '12000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('25', '高级市场专员', '行业应用类', '深圳市', '19000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('26', '采购实习生（MRO）', '运营类', '北京市', '13000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
-INSERT INTO `job` VALUES ('27', '寻源经理-生产物料方向', '运营类', '深圳市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
+INSERT INTO `job` VALUES ('27', '寻源经理-生产物料方向', '运营类', '深圳市', '7000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 17:22:30');
 INSERT INTO `job` VALUES ('28', '项目采购-生产物料方向', '运营类', '上海市', '11000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('29', '关务经理/主管', '运营类', '深圳市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('30', '供应商管理-电子料/结构件', '运营类', '深圳市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
-INSERT INTO `job` VALUES ('31', '关务专员', '运营类', '珠海市', '16000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
+INSERT INTO `job` VALUES ('31', '关务专员', '运营类', '珠海市', '42000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 17:22:39');
 INSERT INTO `job` VALUES ('32', '订单执行专员', '运营类', '深圳市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('33', '采购助理', '运营类', '深圳市', '30000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('34', '供应链管理培训生', '运营类', '广州市', '25000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
-INSERT INTO `job` VALUES ('35', '资源开发经理', '运营类', '深圳市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
+INSERT INTO `job` VALUES ('35', '资源开发经理', '运营类', '深圳市', '43000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 17:22:44');
 INSERT INTO `job` VALUES ('36', '总账会计', '财务类', '深圳市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('37', '成本会计', '财务类', '广州市', '25000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('38', '（高级）财务分析师', '财务类', '深圳市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('39', '资金专员', '财务类', '上海市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('40', '高级资金专员', '财务类', '深圳市', '35000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
-INSERT INTO `job` VALUES ('41', '视频剪辑（实习生）', '设计类', '深圳市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
+INSERT INTO `job` VALUES ('41', '视频剪辑（实习生）', '设计类', '深圳市', '43000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 17:22:54');
 INSERT INTO `job` VALUES ('42', '（高级）视觉设计师', '设计类', '深圳市', '30000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('43', '（高级）景观设计师', '设计类', '上海市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('44', '（高级）包装设计师', '设计类', '深圳市', '25000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
-INSERT INTO `job` VALUES ('45', '周边产品设计师', '设计类', '深圳市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
+INSERT INTO `job` VALUES ('45', '周边产品设计师', '设计类', '深圳市', '42000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 17:23:03');
 INSERT INTO `job` VALUES ('46', '交互设计师', '设计类', '深圳市', '10000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('47', '技术文档专员', '职能类', '北京市', '15000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');
 INSERT INTO `job` VALUES ('48', '行政前台', '职能类', '深圳市', '55000', 'http://localhost:8080/test/fenleishaixuan/detail.htm', '知道基本的设计思想，做得多说的少，能够加班十个小时没有怨言，能够抵抗超强的压力', '2018-10-29 09:18:49');

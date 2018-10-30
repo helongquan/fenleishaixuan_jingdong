@@ -57,36 +57,22 @@ $(document).ready(function(){
 
 		    newqujian.push(res[res.length-1]["pay"]);
 
-		    for (var i = 0; i < newqujian.length; i++) {
-			  $("#select3").append("<dd><a href='#'><span class='xiaxian'>"+newqujian[i]+"</span> - <span class='shangxian'>"+newqujian[i+1]+"</span></a></dd>");
+		    var htmltxt = "";
+            for (var i = 0; i < newqujian.length; i++) {
+                htmltxt += "<dd>";
+                htmltxt += "<a href='#'>";
+                htmltxt += "<span class='xiaxian'>"+newqujian[i]+"</span> - <span class='shangxian'>"+newqujian[i+1]+"</span>";
+                htmltxt += "</a>";
+                htmltxt += "</dd>";
 		    }
+            $("#select3").append(htmltxt).show(500);
+
 		    $("#select3 dd:last-child").remove();
         },
         error: function (xhr, err, exception) {
             console.log(err);
         }
     });
-
-
-    // 查询所有信息
-    // htmlobj_all = $.ajax({
-    //     url: "http://localhost:8080/test/fenleishaixuan/search_all.php",
-    //     type: "get",
-    //     dataType: "json",
-    //     contentType: "application/json",
-    //     success: function (res) {
-    //         console.log(res);
-    //         $("table").css({'display':'table'});
-    //         $("#search_result tbody tr").remove();
-    //         for (var i = 0; i < res.length; i++) {
-    //         	$("#search_result").append("<tr><td><a href='#'>"+res[i]["name"]+"</a></td><td>"+res[i]["city"]+"</a></td><td>"+res[i]["category"]+"</a></td><td>"+res[i]["pay"]+"</a></td></tr>");
-		  //   }
-    //     },
-    //     error: function (xhr, err, exception) {
-    //         console.log(err);
-    //     }
-    // });
-
 
     // 访问页面的时候，加载更多+查询所有内容
     function nwalletProfit(num, cNum){
@@ -139,7 +125,6 @@ $(document).ready(function(){
 	});
 
 
-
   //   var arr = [
 		// { "name": "刘红", "value": "qqq", "age": "10" },
 		// { "name": "曹操", "value": "qqq", "age": "10" },
@@ -158,7 +143,6 @@ $(document).ready(function(){
   //       }
   //   }
   //   console.log(arr);
-
 
   	// $("#select1").on("click","dd",function(){
    //      $(this). find(".fenlei").show()
@@ -186,7 +170,6 @@ $(document).ready(function(){
 			function SelectAllCate(num, cNum){
 			    $.ajax({
 			        type: "get",
-			        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
 			        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 			        dataType: "json",
 			        async: false,   //设置成同步
@@ -215,7 +198,6 @@ $(document).ready(function(){
 			                    }
 			                    $("#search_result").append(htmltxt);
 			                }
-
 			            }
 
 			        },
@@ -248,10 +230,8 @@ $(document).ready(function(){
 				obj.city = $("#selectB a").text();
 				obj.xiaxian = $("#selectC .xiaxian").text();
 				obj.shangxian = $("#selectC .shangxian").text();
-			// console.log(fenlei.category);
 
 			$.ajax({
-		        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_category.php",
 		       	url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 		        type: "get",
 		        dataType: "json",
@@ -291,7 +271,6 @@ $(document).ready(function(){
 			function SelectAllCity(num, cNum){
 			    $.ajax({
 			        type: "get",
-			        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
 			        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 			        dataType: "json",
 			        async: false,   //设置成同步
@@ -396,13 +375,9 @@ $(document).ready(function(){
 		if ($(this).hasClass("select-all")) {
 			$("#selectC").remove();
 
-			$("#search_result tbody tr").remove();
-			$(".miaosu").remove(); //关闭职位详情
-
 			function SelectAllPay(num, cNum){
 			    $.ajax({
 			        type: "get",
-			        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_all.php",
 			        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 			        dataType: "json",
 			        async: false,   //设置成同步
@@ -466,7 +441,6 @@ $(document).ready(function(){
 			obj.shangxian = $("#selectC .shangxian").text();
 
 		$.ajax({
-	        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_pay.php",
 	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 	        type: "get",
 	        async: false,   //设置成同步
@@ -531,7 +505,6 @@ $(document).ready(function(){
 
 		jQuery_1_8_3.ajax({
 	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_by_name.php",
-	        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 	        type: "get",
 	        dataType: "json",
 	        data: obj,
@@ -557,48 +530,14 @@ $(document).ready(function(){
 
 	});
 
-
+	// dom变化监控，更多请了解MutationObserver
 	// var insertedNodes = $('.select-result dl .selected');
 	// var observer = new MutationObserver(function(mutations) {
 	//   mutations.forEach(function(mutation) {
 	//   	for (var i = 0; i < mutation.addedNodes.length; i++)
 	//       insertedNodes.push(mutation.addedNodes[i]);
 	//   })
-	//     // console.log(insertedNodes.text());
-
-	//   	var chaxun = new Object();
-	// 	chaxun.city = $("#selectB a").text();
-	// 	chaxun.category = $("#selectA a").text();
-	// 	chaxun.pay = $("#selectC .xiaxian").text();
-	// 	chaxun.xiaxian = $("#selectC .xiaxian").text();
-	// 	chaxun.shangxian = $("#selectC .shangxian").text();
-
-	// 	$.ajax({
-	//         url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
-	//         type: "get",
-	//         async: false,   //设置成同步
-	//         dataType: "json",
-	//         data: chaxun,
-	//         contentType: "application/json",
-	//         success: function (res) {
-	//             // console.log(res);
-	//             var htmltxt = "";
-	//             for (var i = 0; i < res.length; i++) {
-	//                 htmltxt += "<tr>";
-	//                 htmltxt += "<td class='mingcheng'><span>"+res[i]["name"]+"</span></td>";
-	//                 htmltxt += "<td>"+res[i]["city"]+"</td>";
-	//                 htmltxt += "<td>"+res[i]["category"]+"</td>";
-	//                 htmltxt += "<td>"+res[i]["pay"]+"</td>";
-	//                 htmltxt += "</tr>";
-	// 		    }
- //                $("#search_result").append(htmltxt).show(500);
-	//         },
-	//         error: function (xhr, err, exception) {
-	//             console.log(err);
-	//         }
-	//     });
-
-
+	//     console.log(insertedNodes.text());
 	// });
 	// observer.observe(document, {
 	// 	attributes: true,
@@ -608,6 +547,5 @@ $(document).ready(function(){
 	// 	attributeOldValue: true,
 	// 	characterDataOldValue: true
 	// });
-	
 	
 });
