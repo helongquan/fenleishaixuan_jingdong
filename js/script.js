@@ -243,8 +243,11 @@ $(document).ready(function(){
 				$(".select-result dl").append(copyThisA.attr("id", "selectA"));
 			}
 
-			var fenlei = new Object();
-			fenlei.category = $("#selectA a").text();
+			var obj = new Object();
+				obj.category = $("#selectA a").text();
+				obj.city = $("#selectB a").text();
+				obj.xiaxian = $("#selectC .xiaxian").text();
+				obj.shangxian = $("#selectC .shangxian").text();
 			// console.log(fenlei.category);
 
 			$.ajax({
@@ -252,7 +255,7 @@ $(document).ready(function(){
 		       	url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 		        type: "get",
 		        dataType: "json",
-		        data: fenlei,
+		        data: obj,
 		        contentType: "application/json",
 		        success: function (res) {
 		            var htmltxt = "";
@@ -346,8 +349,12 @@ $(document).ready(function(){
 			}
 
 
-			var citys = new Object();
-			citys.city = $("#selectB a").text();
+			var obj = new Object();
+				obj.category = $("#selectA a").text();
+				obj.city = $("#selectB a").text();
+				obj.xiaxian = $("#selectC .xiaxian").text();
+				obj.shangxian = $("#selectC .shangxian").text();
+
 
 			$.ajax({
 		        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_city.php",
@@ -355,7 +362,7 @@ $(document).ready(function(){
 		        type: "get",
 		        async: false,   //设置成同步
 		        dataType: "json",
-		        data: citys,
+		        data: obj,
 		        contentType: "application/json",
 		        success: function (res) {
 		            // console.log(res);
@@ -452,9 +459,11 @@ $(document).ready(function(){
 			}
 		}
 
-		var qian = new Object();
-		qian.xiaxian = $("#selectC .xiaxian").text();
-		qian.shangxian = $("#selectC .shangxian").text();
+		var obj = new Object();
+			obj.category = $("#selectA a").text();
+			obj.city = $("#selectB a").text();
+			obj.xiaxian = $("#selectC .xiaxian").text();
+			obj.shangxian = $("#selectC .shangxian").text();
 
 		$.ajax({
 	        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_pay.php",
@@ -462,7 +471,7 @@ $(document).ready(function(){
 	        type: "get",
 	        async: false,   //设置成同步
 	        dataType: "json",
-	        data: qian,
+	        data: obj,
 	        contentType: "application/json",
 	        success: function (res) {
 	            var htmltxt = "";
