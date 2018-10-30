@@ -334,9 +334,7 @@ $(document).ready(function(){
 				obj.xiaxian = $("#selectC .xiaxian").text();
 				obj.shangxian = $("#selectC .shangxian").text();
 
-
 			$.ajax({
-		        // url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_only_city.php",
 		        url: "http://localhost:8080/project/fenleishaixuan_jingdong/search_filter.php",
 		        type: "get",
 		        async: false,   //设置成同步

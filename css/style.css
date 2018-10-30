@@ -13,8 +13,8 @@ body{font:12px/180% Arial, Helvetica, sans-serif}
 .select .selected a{color:#fff;background-color:#f60}
 .select-result dt{font-weight:bold}
 .select-no{color:#999}
-/*.select .select-result a{padding-right:20px;background:#f60 url("close.gif") right 9px no-repeat}*/
-.select .select-result a{background:#f60}
+.select .select-result a{padding-right:20px;background:#f60 url("close.gif") right 9px no-repeat}
+/*.select .select-result a{background:#f60}*/
 .select .select-result a:hover{background-position:right -15px}
 .miaosu h2{
 	margin-bottom: 20px;
