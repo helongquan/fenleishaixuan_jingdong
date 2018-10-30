@@ -19,7 +19,7 @@ if(empty($_GET['city']) && empty($_GET['category']) && empty($_GET['xiaxian'])){
 }
 else if (empty($_GET['city']) && empty($_GET['category']) && isset($_GET['xiaxian']) ) {
 	$zc_xx = $_GET['xiaxian'];
-	$zc_sx = $_GET[''];
+	$zc_sx = $_GET['shangxian'];
 	$sql = "SELECT * FROM job WHERE pay BETWEEN $zc_xx AND $zc_sx";
 }
 else if (empty($_GET['city']) && isset($_GET['category']) && empty($_GET['xiaxian']) ) {
@@ -43,7 +43,6 @@ else if (isset($_GET['city']) && empty($_GET['category']) && isset($_GET['xiaxia
 	$sql = "SELECT * FROM job WHERE city = '$ci' AND pay BETWEEN $zc_xx AND $zc_sx";
 }
 else if(isset($_GET['city']) && isset($_GET['category']) && empty($_GET['xiaxian']) ){
-
 	$ci = $_GET['city'];
 	$cate = $_GET['category'];
 	$sql = "SELECT * FROM job WHERE city = '$ci' AND category = '$cate'";
