@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/echarts.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
@@ -37,6 +38,14 @@
 					<dd class="select-no">暂时没有选择过滤条件</dd>
 				</dl>
 			</li>
+			<li class="zongjie">
+				<dl>
+					<dt>职位发布统计</dt>
+					<dd id="tj_city">城市职位发布情况</dd>
+					<dd id="tj_pingjun">各个职业分类平均薪资</dd>
+					<dd id="city_pingjun">各个城市平均薪资</dd>
+				</dl>
+			</li>
 		</ul>
 		<hr>
 		<table id="search_result">
@@ -52,7 +61,18 @@
 		<div id="detail_area">
 			
 		</div>
-		<div class="jiaZai_more"><span>更多</span></div>
+		<div class="jiaZai_more"><span>更多职位</span></div>
+		<div id="tongji">
+			<div id="chengshi" style="height: 450px; margin: 0">
+				
+			</div>
+			<div id="xinzi" style="height: 450px; margin: 0">
+				
+			</div>
+			<div id="city_avg" style="height: 450px; margin: 0">
+				
+			</div>
+		</div>
 	</div>
 </div>
 </body>

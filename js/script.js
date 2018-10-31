@@ -142,19 +142,6 @@ $(document).ready(function(){
   //       }
   //   }
   //   console.log(arr);
-
-  	// $("#select1").on("click","dd",function(){
-   //      $(this). find(".fenlei").show()
-   //      alert("nhoa");
-   //  }).on("mouseleave",".picBox",function(){
-   //      $(this). find(".picBox_in").hide()
-   //  })
-
-
- //  	$("#select1").on("click","dd",function(){
-	// 	var fen = $(this).addClass("selected").siblings().removeClass("selected");
-	// 	console.log(fen.text());
-	// });
 			
 	$("#select1").on("click","dd",function(){
 
@@ -207,11 +194,10 @@ $(document).ready(function(){
 			}
 
 			SelectAllCate(0);
-			var clickNum = 0; //点击的次数
+			var clickNum = 0;
 			$(".jiaZai_more").on('click','span', function() {
-			    // event.preventDefault();
 			    clickNum++;
-			    var iNum = 10*clickNum; //每次点击开始加载的第一个索引值
+			    var iNum = 10*clickNum;
 			    SelectAllCate(iNum, clickNum);
 			});
 
@@ -543,5 +529,205 @@ $(document).ready(function(){
 	// 	attributeOldValue: true,
 	// 	characterDataOldValue: true
 	// });
+	
+	// 数据可视化统计
+	
+	jQuery_1_8_3("#tj_city").live("click",function(){
+		$(this).addClass('active').siblings().removeClass('active');
+		$("#chengshi").css({'display':'block'}).siblings().css({'display':'none'});
+		$('#search_result').hide(500);
+		$.ajax({
+	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/getdata_city_information.php",
+	        type: "get",
+	        dataType: "json",
+	        contentType: "application/json",
+	        success: function (res) {
+			    var citys = new Array();
+			    var totals = new Array();
+	            for (var i = 0; i < res.length; i++) {
+	            	citys.push(res[i].city);
+	            	totals.push(res[i].total);
+			    }
+
+			    // 数据可视化开始
+				var dom = document.getElementById("chengshi");
+				var myChart = echarts.init(dom);
+				var app = {};
+				option = null;
+				option = {
+					title: {
+				        text: '城市职位发布情况'
+				    },
+				    tooltip: {
+				        trigger: 'axis'
+				    },
+				    xAxis: {
+				        type: 'category',
+				        data: citys
+				    },
+				    yAxis: {
+				        type: 'value'
+				    },
+				    series: [{
+				        data: totals,
+				        type: 'line',
+				        smooth: true
+				    }]
+				};
+				if (option && typeof option === "object") {
+				    myChart.setOption(option, true);
+				}
+				// 数据可视化结束
+
+	        },
+	        error: function (xhr, err, exception) {
+	            console.log(err);
+	        }
+	    });
+
+	});
+
+
+	$("#tj_pingjun").click(function(){
+		$(this).addClass('active').siblings().removeClass('active');
+		$("#xinzi").css({'display':'block'}).siblings().css({'display':'none'});
+		$('#search_result').hide(500);
+		$.ajax({
+	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/getdata_category_information.php",
+	        type: "get",
+	        dataType: "json",
+	        contentType: "application/json",
+	        success: function (res) {
+			    var fenlei = new Array();
+			    console.log(res);
+	            for (var i = 0; i < res.length; i++) {
+	            	fenlei.push(res[i].name);
+			    }
+
+			    // 数据可视化开始
+				var dom = document.getElementById("xinzi");
+				var myChart = echarts.init(dom);
+				option = {
+				    title : {
+				        text: '各分类平均薪资',
+				        subtext: '平均薪资',
+				        x:'center'
+				    },
+				    tooltip : {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b} : {c} ({d}%)"
+				    },
+				    legend: {
+				        orient: 'vertical',
+				        left: 'left',
+				        data: fenlei
+				    },
+				    series : [
+				        {
+				            name: '职位类别',
+				            type: 'pie',
+				            radius : '55%',
+				            center: ['50%', '60%'],
+				            data: res,
+				            itemStyle: {
+				                emphasis: {
+				                    shadowBlur: 10,
+				                    shadowOffsetX: 0,
+				                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+				                }
+				            }
+				        }
+				    ]
+				};
+
+				if (option && typeof option === "object") {
+				    myChart.setOption(option, true);
+				}
+				// 数据可视化结束
+
+	        },
+	        error: function (xhr, err, exception) {
+	            console.log(err);
+	        }
+	    });
+
+	});
+
+
+	$("#city_pingjun").click(function(){
+		$(this).addClass('active').siblings().removeClass('active');
+		$("#city_avg").css({'display':'block'}).siblings().css({'display':'none'});
+		$('#search_result').hide(500);
+		$.ajax({
+	        url: "http://localhost:8080/project/fenleishaixuan_jingdong/getdata_city_pay.php",
+	        type: "get",
+	        dataType: "json",
+	        contentType: "application/json",
+	        success: function (res) {
+			    var cc = new Array();
+			    var pp = new Array();
+			    console.log(res);
+	            for (var i = 0; i < res.length; i++) {
+	            	cc.push(res[i].city);
+	            	pp.push(res[i].value);
+			    }
+
+			    // 数据可视化开始
+				var dom = document.getElementById("city_avg");
+				var myChart = echarts.init(dom);
+				var app = {};
+				app.title = '坐标轴刻度与标签对齐';
+
+				option = {
+				    color: ['#3398DB','#f43653','#547634'],
+				    tooltip : {
+				        trigger: 'axis',
+				        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+				            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+				        }
+				    },
+				    grid: {
+				        left: '3%',
+				        right: '4%',
+				        bottom: '3%',
+				        containLabel: true
+				    },
+				    xAxis : [
+				        {
+				            type : 'category',
+				            data : cc,
+				            axisTick: {
+				                alignWithLabel: true
+				            }
+				        }
+				    ],
+				    yAxis : [
+				        {
+				            type : 'value'
+				        }
+				    ],
+				    series : [
+				        {
+				            name:'平均薪资',
+				            type:'bar',
+				            barWidth: '60%',
+				            data:pp
+				        }
+				    ]
+				};
+
+				if (option && typeof option === "object") {
+				    myChart.setOption(option, true);
+				}
+				// 数据可视化结束
+
+	        },
+	        error: function (xhr, err, exception) {
+	            console.log(err);
+	        }
+	    });
+
+	});
+
 	
 });
